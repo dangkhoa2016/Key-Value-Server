@@ -1,0 +1,26 @@
+const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+const replitHelpers = require('./app/libs/quick.replit.mod/helpers.js');
+var z = await replitHelpers.listAll('', true);
+for (let n = 0;n < 6;n++) {
+ replitHelpers.listAll('', true);
+}
+const Database = require('./app/libs/quick.replit.mod/src/database.js');
+const db = new Database();
+for (let n = 0;n < 6;n++) {
+ db.listall('');
+}
+
+const Promise = require('bluebird');
+await Promise.map(Array.from(Array(10).keys()), n => (db.listall(n)) );
+
+
+
+const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+const Database = require('./app/libs/quick.replit.mod/src/database.js');
+const db = new Database();
+var x = await db.add('plus+', 1, { skipThrowError: true });
+const Promise = require('bluebird');
+
+const masterCrypto = require('./app/libs/master_crypto.js');

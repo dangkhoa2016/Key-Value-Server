@@ -1,0 +1,142 @@
+curl -v 'http://localhost:8080/a' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/a?auth_token=test' \
+  -H 'accept: */*' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"value":["2023-01-31T17:00:00.000Z","2023-02-28T16:59:59.999Z"]}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/b' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/b' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"value":{"aaa":"mmmm"}}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "c", "value":8888,"expiration": 1678614092331}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "c", "value":8888,"expiration": "2023-03-14T11:35:26+07:00"}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/c' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "d", "value":"zzzzz","expiration": "2023-03-12T09:22:09Z"}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/d' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/[e]' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "", "value":"{\"ggg\":\"zzzzz\"}","expiration": "2023-03-15T09:22:09Z"}' \
+  --compressed | json_pp
+
+// try with error json
+curl -v 'http://localhost:8080/[e]' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "d", "value":"{"ggg\":\"zzzzz\"}","expiration": "2023-03-15T09:22:09Z"}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/[e]' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/f:*:_$' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "", "value":{"ggg":"zzzzz"},"expiration": "2023-03-15T09:22:09Z"}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/f%3A*%3A_%24' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/f:*:_$' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/f:*:_$' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/c/d' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+fetch('/import?auth_token=test',
+{method:'post', body: JSON.stringify({url: 'https://8080-xwwx-h0h-bd9q9aj4bla.ws-us90.gitpod.io/export', auth_token: '' }), headers: { "Content-Type": "application/json", } })
+
+curl -v 'http://localhost:8080/search?prefix=d' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: text/plain' \
+  -H 'user-agent: Mozilla'
+
+curl -v 'http://localhost:8080/f:*:_$' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "", "value":{"ggg":"zzzzz"},"expiration": "2023-05-15T09:22:09Z"}' \
+  --compressed | json_pp
+
+curl -v 'http://localhost:8080/%5Be%5D' \
+  -H 'accept: */*' \
+  -H 'authorization: Bearer test' \
+  -H 'content-type: application/json' \
+  -H 'user-agent: Mozilla' \
+  --data-raw '{"key": "", "value":"{\"ggg\":\"zzzzz\"}","expirationTtl": "60"}' \
+  --compressed | json_pp
